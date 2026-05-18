@@ -19,3 +19,19 @@ def driver():
     yield driver
     time.sleep(1) # Para ver el resultado final
     driver.quit()
+
+from pages.login_page import LoginPage
+
+@pytest.fixture
+def credenciales_validas():
+    return {"usuario": "standard_user", "clave": "secret_sauce"}
+
+@pytest.fixture
+def usuario_logueado(driver, credenciales_validas):
+    """Realiza el login automáticamente y deja al usuario en el inventario."""
+    login_page = LoginPage(driver)
+    login_page.abrir().login_completo(
+        credenciales_validas["usuario"], 
+        credenciales_validas["clave"]
+    )
+    return driver    

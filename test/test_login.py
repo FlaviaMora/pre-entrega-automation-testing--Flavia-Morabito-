@@ -11,7 +11,7 @@ class TestLogin:
         login_page.abrir().login_completo(usuario, clave)
         
         if usuario == "locked_out_user":
-            #validar que aparezca el cartel rojo
+            #validar que aparezca el mensaje en rojo
             assert login_page.esta_error_visible(), "El error no apareció para el usuario bloqueado"
             
             #validar que el mensaje contenga "locked out"
